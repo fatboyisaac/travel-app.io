@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Europe Travel App</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+If you include the next line in all your web pages, they will all share the same look.
+This makes it eas2ier to make new pages for your site. -->
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+   
+    <style>
+      .country {
+        float:left;
+        margin: 20px;
+      }
+     
+     
+      hr {
+        margin-top: 200px;
+      }
+     
+      body {
+        margin-left: auto;
+        background: background: rgb(148,230,27);
+        background: linear-gradient(90deg, rgba(148,230,27,1) 3%, rgba(27,233,14,1) 35%, rgba(14,215,140,1) 44%, rgba(18,213,101,1) 53%, rgba(31,111,233,1) 68%, rgba(255,0,119,1) 100%);
+      }
+
+    </style>
+  </head>
+  <body>
+ 
+    <script>
+      //var countries = ["country0", "country1", "country2", "country3", "country4", "country5", "country6", "country7", "country8", "country9", "country10", "country11", "country12", "country13", "country14"];
+      var countries = ["France", "Greece", "Italy", "Protugal", "Norway", "Turkey", "United Kingdom", "Austria", "Switzerland", "Spain", "Netherlands", "Sweden", "Czech Republic", "Germany", "Belgium"];
+      var price = [345, 155, 305, 180, 350, 130, 320, 300, 480, 240, 250, 255, 195, 215, 220];
+      var food = [10, 9, 9, 9, 8, 8, 8, 8, 8, 8, 7, 7, 7, 8, 8];
+      var tourism = [9, 9, 9, 8, 9, 9, 9, 9, 9, 9, 8, 8, 8, 8, 8];
+      //add pics
+     
+      console.log(countries);
+     
+     
+     
+      function swap(arr,xp, yp)
+      {
+          var temp = arr[xp];
+          arr[xp] = arr[yp];
+          arr[yp] = temp;
+      }
+ 
+      function selectionSortPrice(arr,  n)
+      {
+          var i, j, min_idx;  
+       
+          // One by one move boundary of unsorted subarray
+          for (i = 0; i < n-1; i++)
+          {
+              // Find the minimum element in unsorted array
+              min_idx = i;
+              for (j = i + 1; j < n; j++)
+              if (arr[j] < arr[min_idx])
+                      min_idx = j;
+       
+              // Swap the found minimum element with the first element
+              swap(countries, min_idx, i);
+              swap(price, min_idx, i);
+              //add another line
+          }
+      }
+      
+      function selectionSortOthers(arr,  n)
+      {
+          var i, j, min_idx;  
+       
+          // One by one move boundary of unsorted subarray
+          for (i = 0; i > n-1; i++)
+          {
+              // Find the minimum element in unsorted array
+              min_idx = i;
+              for (j = i + 1; j < n; j++)
+              if (arr[j] < arr[min_idx])
+                      min_idx = j;
+       
+              // Swap the found minimum element with the first element
+              swap(countries, min_idx, i);
+              swap(food, min_idx, i);
+              swap(tourism, min_idx, i);
+              //add another line
+          }
+      }
+      
+      function sorterFunction(){
+        var choice = document.getElementById("filterMenu").value;
+        if (choice == "Price") {
+          selectionSortPrice(price, 15);
+          
+          for (var i = 0; i < price.length; i++) { 
+            
+            var country_div = document.getElementById("country"+i); 
+            country_div.innerHTML = "<li>" + countries[i] + ": " + "<p>Budget:</p>" + "$" + price[i] + "<br>"
+          }
+        
+        } else if (choice == "Food") {
+          selectionSortOthers(food, 15);
+          
+          for (var i = 0; i < price.length; i++) { 
+            
+            var country_div1 = document.getElementById("country"+i); 
+            country_div1.innerHTML = "<li>" + countries[i] + ": " + "<p>Food:</p>" + food[i] + "<p>/10</p>" + "<br>"
+          }
+          
+        } else if (choice == "Tourism") {
+          selectionSortOthers(tourism, 15);
+          
+          for (var i = 0; i < price.length; i++) { 
+            
+            var country_div2 = document.getElementById("country"+i); 
+            country_div2.innerHTML = "<li>" + countries[i] + ": " + "<p>Tourism:</p>" + tourism[i] + "<p>/10</p>" + "<br>"
+          }
+        }
+        console.log(choice);
+      }
+      
+
+        
+      </script>
+      <p><a href="index.html">Homepage | </a><a href="not_found.html">Filter Page</a><a href="site2.html"> | Note-Taking App</a><a href="randomcountry.html"> | Random Country</a></p>
+    <button onclick="sorterFunction()">Submit</button>
+    <h1>Europe Travel App</h1>
+
+    <!-- <p>This is a paragraph! Here's how you make a link: <a href="https://neocities.org">Neocities</a>.</p> -->
+
+    <h3>Description</h3>
+    <h5>Filter by:</h5>
+    <select id="filterMenu" onchange="sorterFunction()">
+      <option value="Price">Price</option>
+      <option value="Food">Food</option>
+      <option value="Tourism">Tourism</option>
+    </select>
+  
+
+    <h2>Overall Score</h2>
+    <ol>
+      <div id="country0">
+      <li>France:
+       
+        <p>Budget: $345</p>
+        <p>Food Rating: 10/10</p>
+        <p>Tourism Rating: 9/10</p>
+        <p>Overall Score: 28/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="france.jpg">
+        <hr>
+      </li>
+      </div>
+     
+      <div id="country1">
+      <li>Greece:
+        <p>Budget: $155</p>
+        <p>Food Rating: 9/10</p>
+        <p>Tourism Rating: 9/10</p>
+        <p>Overall Score: 27/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="greece.jpg">
+        <hr>
+      </li>
+      </div>
+     
+      <div id="country2">
+      <li>Italy:
+        <p>Budget: $305</p>
+        <p>Food Rating: 9/10</p>
+        <p>Tourism Rating: 9/10</p>
+        <p>Overall Score: 27/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="italy.jpg">
+        <hr>
+      </li>
+      </div>
+     
+      <div id="country3">
+      <li>Portugal:
+        <p>Budget: $180</p>
+        <p>Food Rating: 9/10</p>
+        <p>Tourism Rating: 8/10</p>
+        <p>Overall Score: 26/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="portugal.jpg">
+        <hr>
+      </li>
+      </div>
+     
+      <div id="country4">
+      <li>Norway:
+        <p><p>Budget: $350</p>
+        <p>Food Rating: 8/10</p>
+        <p>Tourism Rating: 9/10</p>
+        <p>Overall Score: 26/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="norway.jpg">
+        <hr>
+      </li>
+      </div>
+       
+      <div id="country5">
+      <li>Turkey:
+        <p>Budget: $130</p>
+        <p>Food Rating: 8/10</p>
+        <p>Tourism Rating: 9/10</p>
+        <p>Overall Score: 26/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="turkey.jpeg">
+        <hr>
+      </li>
+      </div>
+       
+      <div id="country6">
+      <li>United Kingdom:
+        <p>Budget: $320</p>
+        <p>Food Rating: 8/10</p>
+        <p>Tourism Rating: 9/10</p>
+        <p>Overall Score: 26/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="uk.jpg">
+        <hr>
+      </li>
+      </div>
+     
+      <div id="country7">
+      <li>Austria:
+        <p>Budget: $300</p>
+        <p>Food Rating: 8/10</p>
+        <p>Tourism Rating: 9/10</p>
+        <p>Overall Score: 25/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="austria.jpeg">
+        <hr>
+      </li>
+      </div>
+       
+      <div id="country8">
+      <li>Switzerland:
+        <p>Budget: $480</p>
+        <p>Food Rating: 8/10</p>
+        <p>Tourism Rating: 9/10</p>
+        <p>Overall Score: 25/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="swiss.jpeg">
+        <hr>
+      </li>
+      </div>
+     
+      <div id="country9">
+      <li>Spain:
+        <p>Budget: $240</p>
+        <p><p>Food Rating: 8/10</p>
+        <p>Tourism Rating: 9/10</p>
+        <p>Overall Score: 25/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="spain.jpeg">
+        <hr>
+      </li>
+      </div>
+     
+     
+      <div id="country10">
+      <li>Netherlands:
+        <p>Budget: $250</p>
+        <p>Food Rating: 7/10</p>
+        <p>Tourism Rating: 8/10</p>
+        <p>Overall Score: 22/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="netherlands.jpeg">
+        <hr>
+      </li>
+      </div>
+     
+      <div id="country11">
+      <li>Sweden:
+        <p>Budget: $255</p>
+        <p>Food Rating: 7/10</p>
+        <p>Tourism Rating: 8/10</p>
+        <p>Overall Score: 22/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="sweden.jpg">
+        <hr>
+      </li>
+      </div>
+     
+      <div id="country12">
+      <li>Czech Republic:
+        <p>Budget: $195</p>
+        <p>Food Rating: 7/10</p>
+        <p>Tourism Rating: 8/10</p>
+        <p>Overall Score: 22/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="czech_republic.jpeg">
+        <hr>
+      </li>
+      </div>
+
+     
+      <div id="country13">
+      <li>Germany:
+        <p>Budget: $215</p>
+        <p>Food Rating: 8/10</p>
+        <p>Tourism Rating: 8/10</p>
+        <p>Overall Score: 24/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="germany.jpeg">
+        <hr>
+      </li>
+      </div>
+     
+      <div id="country14">
+      <li>Belgium:
+        <p>Budget: $220</p>
+        <p>Food Rating: 8/10</p>
+        <p>Tourism Rating: 8/10</p>
+        <p>Overall Score: 24/30</p>
+        <img style="float:right; border: solid 4px green; width: 25%;" src="belgium.jpeg">
+        <hr>
+      </li>
+      </div>
+     
+    </ol>
+   
+    <!--<p class="country"><h3></p>-->
+  </body>
+</html>
