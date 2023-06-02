@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The web site of travel-app</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    
+    <style>
+    
+      body {
+        background: rgb(18,213,101);
+        background: linear-gradient(90deg, rgba(18,213,101,1) 0%, rgba(148,230,27,1) 0%, rgba(27,233,14,1) 0%, rgba(14,215,140,1) 0%, rgba(31,111,233,1) 49%, rgba(255,0,119,1) 100%)
+      }
+      
+    </style>
+    
+  </head>
+  <body>
+     <script>
+        function addNote() {
+          // Get the note input value
+          var noteInput = document.getElementById("noteInput");
+          var noteText = noteInput.value;
+        
+          // Create a new list item
+          var li = document.createElement("li");
+          var noteNode = document.createTextNode(noteText);
+          li.appendChild(noteNode);
+        
+          // Add the new note to the list
+          var noteList = document.getElementById("noteList");
+          noteList.appendChild(li);
+        
+          // Clear the input field
+          noteInput.value = "";
+        }
+     </script>
+     
+     <p><a href="index.html">Homepage | </a><a href="not_found.html">Filter Page</a><a href="site2.html"> | Note-Taking App</a><a href="randomcountry.html"> | Random Country</a></p>
+     <h1>Note-Taking App</h1>
+    <input type="text" id="noteInput" placeholder="Enter your note">
+    <button onclick="addNote()">Add Note</button>
+    <ul id="noteList"></ul>
+  </body>
+</html>
